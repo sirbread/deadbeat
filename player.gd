@@ -32,5 +32,9 @@ func fire():
 	bullet_instance.linear_velocity = Vector2(bullet_speed, 0).rotated(rotation)
 	get_tree().root.call_deferred("add_child", bullet_instance) # Ensure it's added safely
 
-	
-	
+func kill():
+	get_tree().reload_current_scene()
+
+func _on_area_2d_body_entered(body):
+	if "enemy" in body.name:
+		kill()
